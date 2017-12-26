@@ -7,7 +7,7 @@ class Context
 {
 public:
 	bool Create(HWND hWnd, const int width, const int height);
-
+	void Render();
 
 private:
 

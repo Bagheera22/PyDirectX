@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), "exe"))
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
-from PyQt5.QtCore import QSize    
+from PyQt5.QtCore import QSize, QTimer, QObject
 import BridgeEngine as __PyEngineTest__
 
 class D3D(QWidget):
@@ -10,10 +10,15 @@ class D3D(QWidget):
         QWidget.__init__(self, parent)
         a = self.winId().ascapsule()
 
-        test = __PyEngineTest__.BridgeEngine()
-        test.create_context(windowId=a, width=self.width(), height=self.height())
+        self.test = __PyEngineTest__.BridgeEngine()
+        self.test.create_context(windowId=a, width=self.width(), height=self.height())
 
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_render)
+        self.timer.start(16);
         pass
+    def update_render(self):
+        self.test.render()
 
 class HelloWindow(QMainWindow):
     def __init__(self):

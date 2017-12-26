@@ -97,6 +97,8 @@ public:
 		behaviors().supportGetattro();
 		behaviors().supportSetattro();
 		PYCXX_ADD_KEYWORDS_METHOD(create_context, CreateContext, "docs for CreateContext");
+		PYCXX_ADD_KEYWORDS_METHOD(render, Render, "docs for CreateContext");
+
 		behaviors().readyType();
 	}
 	Py::Object CreateContext(const Py::Tuple& args, const Py::Dict &kwds)
@@ -117,6 +119,14 @@ public:
 	}
 
 	PYCXX_KEYWORDS_METHOD_DECL(BridgeEngine, CreateContext)
+
+	Py::Object Render(const Py::Tuple& /*args*/, const Py::Dict &/*kwds*/)
+	{
+		m_context.Render();
+		return Py::None();
+	}
+	PYCXX_KEYWORDS_METHOD_DECL(BridgeEngine, Render)
+
 private:
 	Context m_context;
 };
