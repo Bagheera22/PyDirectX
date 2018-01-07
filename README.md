@@ -1,4 +1,4 @@
-# PyEngine
+# PyDirectx
 This is a test about creating a interface with pyQt with a directX11 context(native)
 
 # How compile and run
